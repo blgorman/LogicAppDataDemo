@@ -18,7 +18,8 @@ public sealed class ConfigurationBuilderSingleton
     {
         var builder = new ConfigurationBuilder()
                             .SetBasePath(Directory.GetCurrentDirectory())
-                            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                            .AddUserSecrets<Program>();
 
         _configuration = builder.Build();
     }
