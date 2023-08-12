@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace SimpleProductDataModels
 {
-    internal class NewProductStaging
+    public class NewProductStaging
     {
+        public int Id { get; set; }
+        public long UTCTimestamp { get; set; }
+        public string JSONData { get; set; }
+        public bool IsProcessed { get; set; }
     }
 }
