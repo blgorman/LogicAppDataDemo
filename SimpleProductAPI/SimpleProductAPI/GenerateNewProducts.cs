@@ -45,7 +45,7 @@ namespace SimpleProductAPI
                 var product = new Product();
                 product.SKU = Guid.NewGuid().ToString();
                 product.Name = $"{GenerateProductName()}";
-                product.Price = Convert.ToDecimal(Convert.ToDouble(r.Next(1,100)) + r.NextDouble());
+                product.Price = Math.Round(Convert.ToDecimal(Convert.ToDouble(r.Next(1,100)) + r.NextDouble()), 2);
                 product.CategoryId = r.Next(1, 5);
                 products.Add(product);
             }
