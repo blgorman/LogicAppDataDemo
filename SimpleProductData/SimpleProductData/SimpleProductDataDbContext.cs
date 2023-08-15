@@ -32,7 +32,7 @@ public class SimpleProductDataDbContext : DbContext
                             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
             _configuration = builder.Build();
-            var cnstr = _configuration.GetConnectionString("InventoryManager");
+            var cnstr = _configuration.GetConnectionString("SimpleProductDataDb");
             optionsBuilder.UseSqlServer(cnstr);
         }
     }
