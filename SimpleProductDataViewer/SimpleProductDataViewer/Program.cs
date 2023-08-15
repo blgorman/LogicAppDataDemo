@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using SimpleProductData;
 using SimpleProductDataViewer.Data;
 
 namespace SimpleProductDataViewer
@@ -14,7 +15,28 @@ namespace SimpleProductDataViewer
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
+
+            var productDataCNSTR = builder.Configuration.GetConnectionString("SimpleProductDataDb") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            builder.Services.AddDbContext<SimpleProductDataDbContext>(options =>
+                options.UseSqlServer(productDataCNSTR));
+
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+            var contextOptions = new DbContextOptionsBuilder<ApplicationDbContext>()
+                                        .UseSqlServer(connectionString)
+                                        .Options;
+            using (var context = new ApplicationDbContext(contextOptions))
+            {
+                context.Database.Migrate();
+            }
+
+            var contextOptions2 = new DbContextOptionsBuilder<SimpleProductDataDbContext>()
+                .UseSqlServer(productDataCNSTR)
+                .Options;
+            using (var context = new SimpleProductDataDbContext(contextOptions2))
+            {
+                context.Database.Migrate();
+            }
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();

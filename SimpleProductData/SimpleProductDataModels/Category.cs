@@ -10,5 +10,5 @@ public class Category
     [StringLength(250)]
     public string Description { get; set; }
 
-    public virtual List<Product> Products { get; set; }
+    public virtual List<Product> Products { get; set; } = new List<Product>();
 }
