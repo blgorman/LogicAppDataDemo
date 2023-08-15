@@ -15,4 +15,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.10" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\code\LiveDemo\LogicAppStuff\DataLibrary\SimpleProductData\SimpleProductData\SimpleProductData.csproj" />
+  </ItemGroup>
+
 </Project>
