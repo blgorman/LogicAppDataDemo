@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SimpleProductData;
 
 namespace SimpleProductDataViewer.Controllers
 {
+    [Authorize]
     public class ResetController : Controller
     {
         private readonly SimpleProductDataDbContext _context;
