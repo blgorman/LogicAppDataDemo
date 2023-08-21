@@ -14,19 +14,19 @@ namespace SimpleProductData.Migrations.Scripts
             {
                 if (stream == null)
                 {
-                    throw new System.Exception($"Could not find resource {relativeFileName}");
+                    throw new System.Exception($"Could not find resource (Is it an EMBEDDED Resource?): {relativeFileName}");
                 }
 
                 using (var ms = new MemoryStream())
                 {
                     stream.CopyTo(ms);
-                    var data = ms.ToArray();
-                    var text = GetStringExcludeBOMPreamble(Encoding.UTF8, data);
+                    var text = GetStringExcludeBOMPreamble(Encoding.UTF8, ms.ToArray());
                     return mb.Sql(text);
                 }
             }
         }
 
+        //https://stackoverflow.com/questions/11701341/encoding-utf8-getstring-doesnt-take-into-account-the-preamble-bom
         public static string GetStringExcludeBOMPreamble(this Encoding encoding, byte[] bytes)
         {
             var preamble = encoding.GetPreamble();

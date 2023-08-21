@@ -8,10 +8,17 @@
 
   <ItemGroup>
     <None Remove="Migrations\Scripts\Procedures\ProcessNewProductsFromStaging\ProcessNewProductsFromStaging.v0.sql" />
+    <None Remove="Migrations\Scripts\Procedures\ProcessNewProductsFromStaging\ProcessNewProductsFromStaging.v1.sql" />
+    <None Remove="Migrations\Scripts\Procedures\ProcessNewProductsFromStaging\ProcessNewProductsFromStaging.v2.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\Scripts\Procedures\ProcessNewProductsFromStaging\ProcessNewProductsFromStaging.v1.sql" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Migrations\Scripts\Procedures\ProcessNewProductsFromStaging\ProcessNewProductsFromStaging.v0.sql" />
+    <EmbeddedResource Include="Migrations\Scripts\Procedures\ProcessNewProductsFromStaging\ProcessNewProductsFromStaging.v2.sql" />
   </ItemGroup>
 
   <ItemGroup>
