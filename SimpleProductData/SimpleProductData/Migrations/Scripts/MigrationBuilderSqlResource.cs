@@ -21,9 +21,23 @@ namespace SimpleProductData.Migrations.Scripts
                 {
                     stream.CopyTo(ms);
                     var data = ms.ToArray();
-                    var text = Encoding.UTF8.GetString(data, 0, data.Length);
+                    var text = GetStringExcludeBOMPreamble(Encoding.UTF8, data);
                     return mb.Sql(text);
                 }
+            }
+        }
+
+        public static string GetStringExcludeBOMPreamble(this Encoding encoding, byte[] bytes)
+        {
+            var preamble = encoding.GetPreamble();
+
+            if (preamble?.Length > 0 && bytes.Length >= preamble.Length && bytes.Take(preamble.Length).SequenceEqual(preamble))
+            {
+                return encoding.GetString(bytes, preamble.Length, bytes.Length - preamble.Length);
+            }
+            else
+            {
+                return encoding.GetString(bytes);
             }
         }
     }

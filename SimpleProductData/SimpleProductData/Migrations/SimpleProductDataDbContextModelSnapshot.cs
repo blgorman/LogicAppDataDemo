@@ -41,7 +41,7 @@ namespace SimpleProductData.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
 
                     b.HasData(
                         new
@@ -96,7 +96,7 @@ namespace SimpleProductData.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("NewProducts");
+                    b.ToTable("NewProducts", (string)null);
                 });
 
             modelBuilder.Entity("SimpleProductDataModels.Product", b =>
@@ -127,7 +127,7 @@ namespace SimpleProductData.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("SimpleProductDataModels.Product", b =>
